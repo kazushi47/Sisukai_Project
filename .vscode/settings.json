@@ -8,6 +8,11 @@
         "c:\\Program Files\\javafx-sdk-15.0.1\\lib\\javafx.media.jar",
         "c:\\Program Files\\javafx-sdk-15.0.1\\lib\\javafx.swing.jar",
         "c:\\Program Files\\javafx-sdk-15.0.1\\lib\\javafx.web.jar",
-        "c:\\Program Files\\javafx-sdk-15.0.1\\lib\\javafx-swt.jar"
+        "c:\\Program Files\\javafx-sdk-15.0.1\\lib\\javafx-swt.jar",
+        "c:\\Program Files\\UCanAccess-5.0.0-bin\\ucanaccess-5.0.0.jar",
+        "c:\\Program Files\\UCanAccess-5.0.0-bin\\lib\\commons-lang3-3.8.1.jar",
+        "c:\\Program Files\\UCanAccess-5.0.0-bin\\lib\\commons-logging-1.2.jar",
+        "c:\\Program Files\\UCanAccess-5.0.0-bin\\lib\\hsqldb-2.5.0.jar",
+        "c:\\Program Files\\UCanAccess-5.0.0-bin\\lib\\jackcess-3.0.1.jar"
     ]
 }

@@ -1,3 +1,8 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -11,9 +16,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        String javaVersion = System.getProperty("java.version");
-        String javafxVersion = System.getProperty("javafx.version");
-        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        Connection conn = DriverManager.getConnection("jdbc:ucanaccess://Database.accdb");
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery("select * from babyCares");
+        String str = "";
+        while (rs.next()) {
+            str += String.valueOf(rs.getInt("empId")) + "\n";
+        }
+        rs.close();
+        st.close();
+        conn.close();
+        Label l = new Label(str);
         Scene scene = new Scene(new StackPane(l), 640, 480);
         stage.setScene(scene);
         stage.show();
