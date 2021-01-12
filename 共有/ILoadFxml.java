@@ -1,4 +1,4 @@
-package jp.ac.hsc.mainSystem;
+package jp.ac.hsc.system;
 
 import java.io.IOException;
 

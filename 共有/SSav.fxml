@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" styleClass="pane" stylesheets="@application.css" type="GridPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="260.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="260.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="260.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="260.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="15.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="387.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="15.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="387.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="121.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Button fx:id="btnBack" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="tblButton" text="戻る" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="cboxEmpName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" promptText="氏名" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+      <ComboBox fx:id="cboxYear" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" promptText="年" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+      <ComboBox fx:id="cboxMonth" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" promptText="月" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+      <TableView fx:id="tblvBase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="789.0" prefWidth="600.0" styleClass="tblInfo" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="3">
+        <columns>
+          <TableColumn fx:id="tblcBaseItemType" prefWidth="200.0" text="項目種別">
+               <styleClass>
+                  <String fx:value="tblInfo" />
+                  <String fx:value="filler" />
+               </styleClass></TableColumn>
+            <TableColumn fx:id="tblcBaseItem" prefWidth="200.0" text="項目">
+               <styleClass>
+                  <String fx:value="tblInfo" />
+                  <String fx:value="filler" />
+               </styleClass></TableColumn>
+            <TableColumn fx:id="tblcBaseMoney" prefWidth="200.0" text="金額">
+               <styleClass>
+                  <String fx:value="tblInfo" />
+                  <String fx:value="filler" />
+               </styleClass></TableColumn>
+        </columns>
+      </TableView>
+      <TableView fx:id="tblvDate" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="400.0" styleClass="tblInfo" GridPane.columnIndex="4" GridPane.rowIndex="2">
+        <columns>
+          <TableColumn fx:id="tblcDateItem" prefWidth="200.0" text="項目">
+               <styleClass>
+                  <String fx:value="tblInfo" />
+                  <String fx:value="filler" />
+               </styleClass></TableColumn>
+          <TableColumn fx:id="tblcDate" prefWidth="200.0" text="日数・時数">
+               <styleClass>
+                  <String fx:value="tblInfo" />
+                  <String fx:value="filler" />
+               </styleClass></TableColumn>
+        </columns>
+      </TableView>
+      <TableView fx:id="tblvAllMoney" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="400.0" styleClass="tblInfo" GridPane.columnIndex="4" GridPane.rowIndex="4">
+        <columns>
+          <TableColumn fx:id="tblcAllItem" prefWidth="200.0" text="項目">
+               <styleClass>
+                  <String fx:value="tblInfo" />
+                  <String fx:value="filler" />
+               </styleClass></TableColumn>
+          <TableColumn fx:id="tblcAllMoney" prefWidth="200.0" text="金額">
+               <styleClass>
+                  <String fx:value="tblInfo" />
+                  <String fx:value="filler" />
+               </styleClass></TableColumn>
+        </columns>
+      </TableView>
+      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowSpan="2">
+         <children>
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="240.0" styleClass="opPane">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="部署　：" />
+                  <Label fx:id="lblDivName" text="Label" GridPane.columnIndex="1" />
+                  <Label text="社員ID：" GridPane.rowIndex="1" />
+                  <Label text="氏名　：" GridPane.rowIndex="2" />
+                  <Label fx:id="lblEmpId" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="lblName" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="5">
+         <children>
+            <Button fx:id="btnEddite" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="tblButton" text="編集">
+               <font>
+                  <Font name="Meiryo" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEnter" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="tblButton" text="確定">
+               <font>
+                  <Font name="Meiryo" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</fx:root>

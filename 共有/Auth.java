@@ -1,4 +1,4 @@
-package jp.ac.hsc.mainSystem;
+package jp.ac.hsc.system;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,12 +25,11 @@ public class Auth {
 	private static final String	A 					= "A";/*出退勤サブシステム*/
 	private static final String	S 					= "S";/*給与計算サブシステム*/
 	private static final String	SQL 				= "SELECT " + SQL_EMPID + "," + SQL_NAME /*オペレータ情報の抽出SQL*/
-															+ ",e.divId," + SQL_DIVNAME + "," + SQL_JOBTITLEGRADE
-														+ "FROM employees e "
-														+ "JOIN divisions d ON e.divId = d.divId "
-														+ "JOIN jobTitleGrades j ON e.jobTitleGrade = j.jobTitleGrade "
-														+ "WHERE empId = ? AND pw = ?";
-
+																+ ",e.divId," + SQL_DIVNAME
+																+ " FROM employees e "
+																+ "JOIN divisions d ON e.divId = d.divId "
+																+ "WHERE empId = ? AND pw = ?";
+	private static final String SQL_CHECKJOB = "SELECT * FROM employees e JOIN jobTitleSalarys j ON e." + SQL_JOBTITLEGRADE +  " = j." + SQL_JOBTITLEGRADE;
 
 	/**
 	 * 認証に失敗した場合、nullを返却します<br>
@@ -44,7 +43,7 @@ public class Auth {
 		Emp op = null;
 		try(Connection con = DBconnect.getConnection()){
 			PreparedStatement stmt = con.prepareStatement(SQL);
-			stmt.setString(ONE, id);
+			stmt.setInt(ONE, Integer.parseInt(id));
 			stmt.setString(TWO, pw);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) //認証確認
@@ -55,15 +54,21 @@ public class Auth {
 					case S :
 						if(rs.getString(SQL_DIVNAME).equals(DIVNAME))//経理部認証
 							op = new Emp(rs.getString(SQL_EMPID),rs.getString(SQL_NAME),rs.getString(SQL_DIVNAME));
+						stmt = con.prepareStatement(SQL_CHECKJOB);
+						rs = stmt.executeQuery();
+						if(rs.next()) {
+							int tmpPosId = rs.getInt(SQL_JOBTITLEGRADE.strip());
+							if(Arrays.stream(MANAGERID).anyMatch(mgId -> mgId == tmpPosId))op.setMgFlg(true);
+						}
 						break;
 				}
-			int tmpPosId = rs.getInt(SQL_JOBTITLEGRADE.strip());
-			if(Arrays.stream(MANAGERID).anyMatch(mgId -> mgId == tmpPosId))op.setMgFlg(true);
 			stmt.close();
 			rs.close();
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+		}catch(NumberFormatException e) {
+			return null;
 		}
 		return op;
 	}
