@@ -164,7 +164,7 @@ public class Main extends Application {
     }
 
     /**
-     * 出退勤一覧画面に遷移2
+     * 出退勤概要画面に遷移2
      * @param op オペレータ
      * @param divName 対象者の部署名
      * @param year 対象期間の年
