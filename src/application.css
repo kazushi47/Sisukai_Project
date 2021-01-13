@@ -1,0 +1,76 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.pane{
+	-fx-background-color: #006600;
+	-fx-text-fill: #FFFFFF;
+}
+.opPane{/*左上のオペレータ*/
+	-fx-background-color: linear-gradient(to bottom, #F5F5F5, #B3B3B3);
+	-fx-font-size: 12px;
+}
+.buttonrow{
+	-fx-spacing: 10em;
+}
+
+.dTitle{
+	-fx-text-fill: #000000;
+	-fx-border-style: solid;
+	-fx-border-color: #000000;
+	-fx-font-size: 36px;
+}
+
+.btn{
+	-fx-background-color: linear-gradient(to bottom, #F5F5F5, #B3B3B3);
+	-fx-background-radius: 23;
+	-fx-font-size: 36px;
+}
+
+.empInfo{
+	-fx-background-color: linear-gradient(to bottom, #F5F5F5, #B3B3B3);
+}
+
+.button:hover{
+	-fx-background-radius: 23;
+	-fx-background-color: white;
+}
+
+.tblButton{
+	-fx-background-color: linear-gradient(to bottom, #F5F5F5, #B3B3B3);
+	-fx-background-radius: 23;
+}
+
+.tblInfo{
+	-fx-background-color: #D6C77C;
+	-fx-border-color: D79B00;
+}
+
+.table-view .column-header-background .filler {
+       -fx-background-color: white;
+       -fx-border-color: white;
+}
+
+.button:pressed {
+    -fx-background-radius: 23;
+    -fx-background-color: Gray;
+}
+
+.info{
+	-fx-background-color: #D6C77C;
+}
+
+.aAttendance{
+	-fx-background-color: #A9C4EB;
+	-fx-button-radius: 23;
+}
+
+.sSalary{
+	-fx-background-color: #FFCE9F;
+	-fx-button-radius: 23;
+}
+
+.title{
+	-fx-text-fill: #FFFFFF;
+	-fx-border-style: solid;
+	-fx-border-color: #FFFFFF;
+	-fx-font-size: 36px;
+}
