@@ -153,8 +153,8 @@ public class SSvController extends GridPane implements Common, ILoadFxml, Initia
         });
 
         btnSSlct.setOnAction(event -> {
-            /* 給与選択画面へ */
-            Main.getInstance().sendSSlctController(op);
+            /* 選択画面(ホーム)へ */
+            Main.getInstance().sendSlctController();
         });
 
         btnCalc.setOnAction(event -> {
