@@ -199,10 +199,11 @@ public class Main extends Application {
     /**
      * 給与明細画面
      * @param op オペレータ
+     * @param empId 対象社員ID
      */
-    public void sendSSavController(Emp op) {
+    public void sendSSavController(Emp op, int empId, int year, int month) {
         stage.setTitle(STAGE_TITLE + " - 給与明細画面");
-        SSavController controller = new SSavController(op);
+        SSavController controller = new SSavController(op, empId, year, month);
         replaceScene(controller);
     }
 }

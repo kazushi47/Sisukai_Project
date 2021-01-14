@@ -83,11 +83,11 @@ public class SSvController extends GridPane implements Common, ILoadFxml, Initia
     @FXML
     private Label lblName;
 
-    /* DBコネクション */
+    /** DBコネクション */
     private Connection connection = DBconnect.getConnection();
-    /* オペレータ */
+    /** オペレータ */
     private Emp op;
-    /* テーブルデータ */
+    /** テーブルデータ */
     private ObservableList<TblValue> tblData = FXCollections.observableArrayList();
 
     public SSvController(Emp op) {
@@ -157,6 +157,21 @@ public class SSvController extends GridPane implements Common, ILoadFxml, Initia
             Main.getInstance().sendSSlctController(op);
         });
 
+        btnCalc.setOnAction(event -> {
+            /* 給与再計算を行い、給与概要画面(自身)に遷移 */
+            if (cboxDiv.getValue() != null && cboxYear.getValue() != null && cboxMonth.getValue() != null) {
+                int divId = cboxDiv.getValue().value;
+                int year = cboxYear.getValue().value;
+                int month = cboxMonth.getValue().value;
+                try {
+                    new CalcSalary(divId, year + "-" + month + "-21", year + "-" + (month + 1) + "-20").executeCalc(false);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                Main.getInstance().sendSSvController(op);
+            }
+        });
+
         /* 自身に遷移する必要はないので、給与概要ボタン非活性 */
         btnSSv.setDisable(true);
 
@@ -199,6 +214,13 @@ public class SSvController extends GridPane implements Common, ILoadFxml, Initia
         tblcBasicSal.setCellValueFactory(new PropertyValueFactory<>("sumBasics"));
         tblcAllowance.setCellValueFactory(new PropertyValueFactory<>("sumAllowances"));
         tblcTimeout.setCellValueFactory(new PropertyValueFactory<>("sumOvertimes"));
+
+        tblvSv.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                /* ダブルクリックで対象社員の給与明細画面へ */
+                Main.getInstance().sendSSavController(op, tblvSv.getSelectionModel().getSelectedItem().empId, cboxYear.getValue().value, cboxMonth.getValue().value);
+            }
+        });
     }
 
     /**
@@ -206,12 +228,12 @@ public class SSvController extends GridPane implements Common, ILoadFxml, Initia
      */
     private void changeTblData() {
         if (cboxDiv.getValue() != null && cboxYear.getValue() != null && cboxMonth.getValue() != null) {
-            int divId = cboxDiv.getSelectionModel().getSelectedItem().value;
-            int year = cboxYear.getSelectionModel().getSelectedItem().value;
-            int month = cboxMonth.getSelectionModel().getSelectedItem().value;
+            int divId = cboxDiv.getValue().value;
+            int year = cboxYear.getValue().value;
+            int month = cboxMonth.getValue().value;
             try {
                 PreparedStatement ps = connection.prepareStatement(
-                    "select e.name, s.ageSalary + s.abilitySalary + s.jobTitleSalary + s.specialWorkSalary + s.controlSalary + s.commuteSalary + s.businessTripSalary, s.overWorkSalary + s.holidayWorkSalary + s.nightWorkingSalary + s.specialHolidaySalary - s.deduction, "
+                    "select e.empId, e.name, s.ageSalary + s.abilitySalary + s.jobTitleSalary + s.specialWorkSalary + s.controlSalary + s.commuteSalary + s.businessTripSalary, s.overWorkSalary + s.holidayWorkSalary + s.nightWorkingSalary + s.specialHolidaySalary - s.deduction, "
                      + "s.ageSalary + s.abilitySalary, s.jobTitleSalary + s.specialWorkSalary + s.controlSalary + s.commuteSalary + s.businessTripSalary, s.overWorkSalary + s.holidayWorkSalary + s.nightWorkingSalary + s.specialHolidaySalary "
                      + "from employees e inner join salarys s on e.empId = s.empId "
                      + "where e.divId = ? and s.date between ? and ?"
@@ -222,7 +244,7 @@ public class SSvController extends GridPane implements Common, ILoadFxml, Initia
                 ResultSet rs = ps.executeQuery();
                 tblData.clear();
                 while (rs.next()) {
-                    tblData.add(new TblValue(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
+                    tblData.add(new TblValue(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6)));
                 }
                 rs.close();
                 ps.close();
@@ -261,6 +283,9 @@ public class SSvController extends GridPane implements Common, ILoadFxml, Initia
      * テーブルビューの値の型
      */
     public class TblValue {
+        /** 社員ID(テーブルビューには非表示) */
+        public int empId;
+
         /** 社員名 */
         public StringProperty empName;
         /** 給与合計 */
@@ -280,7 +305,8 @@ public class SSvController extends GridPane implements Common, ILoadFxml, Initia
          * @param sumAllowances 手当
          * @param sumOvertimes 時間外手当
          */
-        public TblValue(String empName, int sumSalarys, int sumBasics, int sumAllowances, int sumOvertimes) {
+        public TblValue(int empId, String empName, int sumSalarys, int sumBasics, int sumAllowances, int sumOvertimes) {
+            this.empId = empId;
             this.empName = new SimpleStringProperty(empName);
             this.sumSalarys = new SimpleIntegerProperty(sumSalarys);
             this.sumBasics = new SimpleIntegerProperty(sumBasics);
