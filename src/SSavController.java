@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -218,6 +219,31 @@ public class SSavController extends GridPane implements Common, ILoadFxml, Initi
         tblvBase.setEditable(false);
         tblvDate.setEditable(false);
         tblvAllMoney.setEditable(false);
+
+        tblcAllItem.setCellFactory(column -> {
+            /* セルが更新された時 */
+            return new TableCell<TblValue, String>() {
+                @Override
+                protected void updateItem(final String item, final boolean empty) {
+                    super.updateItem(item, empty);
+                    
+                    getStyleClass().remove("tblCell-red");
+
+                    if (item != null && !empty) {
+                        setText(item.toString());
+                        setGraphic(null);
+
+                        if (item.equals("給与合計")) {
+                            /* 強調表示する */
+                            getStyleClass().add("tblCell-red");
+                        }
+                    } else {
+                        setText(null);
+                        setGraphic(null);
+                    }
+                }
+            };
+        });
 
         /* テーブルビューにデータを設定 */
         tblvBase.itemsProperty().setValue(bases);

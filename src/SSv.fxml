@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="SSV" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" styleClass="pane" stylesheets="@application.css" type="GridPane" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="SSV" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1280.0" styleClass="pane" stylesheets="@application.css" type="GridPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" />
@@ -101,21 +101,25 @@
                      <styleClass>
                         <String fx:value="tblInfo" />
                         <String fx:value="filler" />
+                        <String fx:value="tblColumn-numbers" />
                      </styleClass></TableColumn>
                   <TableColumn fx:id="tblcBasicSal" editable="false" prefWidth="208.0" style="-fx-text-fill: black;" text="基本給">
                      <styleClass>
                         <String fx:value="tblInfo" />
                         <String fx:value="filler" />
+                        <String fx:value="tblColumn-numbers" />
                      </styleClass></TableColumn>
                   <TableColumn fx:id="tblcAllowance" editable="false" prefWidth="208.0" style="-fx-text-fill: black;" text="手当">
                      <styleClass>
                         <String fx:value="tblInfo" />
                         <String fx:value="filler" />
+                        <String fx:value="tblColumn-numbers" />
                      </styleClass></TableColumn>
                   <TableColumn fx:id="tblcTimeout" editable="false" prefWidth="208.0" style="-fx-text-fill: black;" text="時間外手当">
                      <styleClass>
                         <String fx:value="tblInfo" />
                         <String fx:value="filler" />
+                        <String fx:value="tblColumn-numbers" />
                      </styleClass></TableColumn>
               </columns>
                <columnResizePolicy>

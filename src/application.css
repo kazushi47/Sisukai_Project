@@ -74,3 +74,11 @@
 	-fx-border-color: #FFFFFF;
 	-fx-font-size: 36px;
 }
+
+.tblColumn-numbers {
+	-fx-alignment: center-right;
+}
+
+.tblCell-red {
+	-fx-background-color: #ff0000;
+}
